@@ -1,6 +1,14 @@
 # react-native-android-bar-styler
 
-This library allows you to style both system bars on android. 
+A React Native library for styling Android system bars (status bar and navigation bar) with the new architecture (Turbo Modules). This library provides a simple way to customize the appearance of both system bars on Android devices.
+
+> **Note**: This library only works with the new React Native architecture and is Android-only.
+
+## Requirements
+
+- React Native 0.71.0 or higher
+- New Architecture enabled
+- Android only (no effect on iOS)
 
 ## Installation
 
@@ -10,15 +18,59 @@ npm install react-native-android-bar-styler
 
 ## Usage
 
+The library provides several methods to customize the system bars:
 
-```js
-import { multiply } from 'react-native-android-bar-styler';
+```typescript
+import {
+  setStatusBarColor,
+  setNavigationBarColor,
+  setStatusBarStyle,
+  setNavigationBarStyle,
+  setSystemBarsStyle,
+} from 'react-native-android-bar-styler';
 
-// ...
+// Simple color change
+setStatusBarColor('#FF0000'); // Sets status bar to red
+setNavigationBarColor('#00FF00'); // Sets navigation bar to green
 
-const result = multiply(3, 7);
+// With animation
+setStatusBarColor('#FF0000', true, 300); // Animated color change with 300ms duration
+
+// Using style options object
+setStatusBarStyle({
+  color: '#FF0000',
+  isAnimated: true,
+  duration: 300,
+});
+
+// Change both bars at once
+setSystemBarsStyle({
+  color: '#FF0000',
+  isAnimated: true,
+  duration: 300,
+});
 ```
 
+### API Reference
+
+#### Simple Methods
+- `setStatusBarColor(color: string, isAnimated?: boolean, duration?: number)`
+- `setNavigationBarColor(color: string, isAnimated?: boolean, duration?: number)`
+
+#### Style Options Methods
+- `setStatusBarStyle(options: BarStyleOptions)`
+- `setNavigationBarStyle(options: BarStyleOptions)`
+- `setSystemBarsStyle(options: BarStyleOptions)`
+
+#### Types
+
+```typescript
+type BarStyleOptions = {
+  color: string;        // Color in hex format (e.g., '#FF0000')
+  isAnimated?: boolean; // Whether to animate the color change
+  duration?: number;    // Animation duration in milliseconds
+};
+```
 
 ## Contributing
 
