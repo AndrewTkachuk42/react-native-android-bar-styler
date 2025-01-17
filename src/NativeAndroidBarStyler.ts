@@ -21,6 +21,9 @@ export interface Spec extends TurboModule {
   setStatusBarStyle(options: BarStyleOptions): void;
   setNavigationBarStyle(options: BarStyleOptions): void;
   setSystemBarsStyle(options: BarStyleOptions): void;
+  setStatusBarContentStyle(isLight?: boolean): void;
+  setNavigationBarContentStyle(isLight?: boolean): void;
+  setSystemBarsContentStyle(isLight?: boolean): void;
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>('AndroidBarStyler');

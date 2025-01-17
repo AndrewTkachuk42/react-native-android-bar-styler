@@ -1,14 +1,7 @@
 import { View, StyleSheet, Button } from 'react-native';
 
 import { useApp } from './useApp';
-
-const strings = {
-  statusBarColor: 'Status Bar Color',
-  navigationBarColor: 'Navigation Bar Color',
-  statusBarStyle: 'Status Bar Style',
-  navigationBarStyle: 'Navigation Bar Style',
-  systemBarsStyle: 'Both Bars',
-};
+import { strings } from './constants/strings';
 
 export default function App() {
   const {
@@ -17,6 +10,8 @@ export default function App() {
     setNavigationBarStyle,
     setNavigationBarColor,
     setSystemBarsStyle,
+    setLightContentStyle,
+    setDarkContentStyle,
   } = useApp();
 
   return (
@@ -32,6 +27,14 @@ export default function App() {
         onPress={setNavigationBarStyle}
       />
       <Button title={strings.systemBarsStyle} onPress={setSystemBarsStyle} />
+      <Button
+        title={strings.setLightContentStyle}
+        onPress={setLightContentStyle}
+      />
+      <Button
+        title={strings.setDarkContentStyle}
+        onPress={setDarkContentStyle}
+      />
     </View>
   );
 }

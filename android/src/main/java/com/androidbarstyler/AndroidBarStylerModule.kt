@@ -32,6 +32,18 @@ class AndroidBarStylerModule(reactContext: ReactApplicationContext) :
     setBarColor(BarType.BOTH, options)
   }
 
+  override fun setStatusBarContentStyle(isLight: Boolean?) {
+    setBarContentColor(BarType.STATUS, isLight)
+  }
+
+  override fun setNavigationBarContentStyle(isLight: Boolean?) {
+    setBarContentColor(BarType.NAVIGATION, isLight)
+  }
+
+  override fun setSystemBarsContentStyle(isLight: Boolean?) {
+    setBarContentColor(BarType.BOTH, isLight)
+  }
+
   private fun setBarColorWithOptions(
     barType: BarType,
     color: String,
@@ -44,9 +56,15 @@ class AndroidBarStylerModule(reactContext: ReactApplicationContext) :
     setBarColor(barType, options)
   }
 
+  private fun setBarContentColor(barType: BarType, isDark: Boolean?) {
+    currentActivity?.let { activity ->
+      BarStyleManager.setBarContentColor(activity, barType, isDark)
+    }
+  }
+
   private fun setBarColor(barType: BarType, options: ReadableMap) {
     currentActivity?.let { activity ->
-      BarStyleManager.updateBarColor(activity, barType, options)
+      BarStyleManager.setBarColor(activity, barType, options)
     }
   }
 
