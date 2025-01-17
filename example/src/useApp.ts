@@ -3,6 +3,7 @@ import {
   setNavigationBarColor,
   setNavigationBarStyle,
   setSystemBarsStyle,
+  setSystemBarsContentStyle,
 } from 'react-native-android-bar-styler';
 import {
   setStatusBarColor,
@@ -42,11 +43,21 @@ export const useApp = () => {
     setSystemBarsStyle(options);
   }, []);
 
+  const setLightContentStyle = useCallback(() => {
+    setSystemBarsContentStyle(true);
+  }, []);
+
+  const setDarkContentStyle = useCallback(() => {
+    setSystemBarsContentStyle(false);
+  }, []);
+
   return {
     setStatusBarColor: handleSetStatusBarColor,
     setStatusBarStyle: handleSetStatusBarStyle,
     setNavigationBarStyle: handleSetNavigationBarStyle,
     setNavigationBarColor: handleSetNavigationBarColor,
     setSystemBarsStyle: handleSetSystemBarsStyle,
+    setLightContentStyle,
+    setDarkContentStyle,
   };
 };

@@ -62,14 +62,38 @@ setSystemBarsStyle({
 - `setNavigationBarStyle(options: BarStyleOptions)`
 - `setSystemBarsStyle(options: BarStyleOptions)`
 
+#### Content Style Methods
+- `setStatusBarContentStyle(isLight?: boolean)` - Sets the status bar content (icons/text) to light or dark theme
+- `setNavigationBarContentStyle(isLight?: boolean)` - Sets the navigation bar content (buttons) to light or dark theme
+- `setSystemBarsContentStyle(isLight?: boolean)` - Sets both status and navigation bar content to light or dark theme
+
 #### Types
 
 ```typescript
 type BarStyleOptions = {
-  color: string;        // Color in hex format (e.g., '#FF0000')
-  isAnimated?: boolean; // Whether to animate the color change
-  duration?: number;    // Animation duration in milliseconds
+  color: string;        // Color in hex format (e.g., '#FF0000'). Defaults to black.
+  isAnimated?: boolean; // Whether to animate the color change. Defaults to true.
+  duration?: number;    // Animation duration in milliseconds. Defaults to 300ms.
 };
+```
+
+#### Example with Content Style
+
+```typescript
+import {
+  setStatusBarContentStyle,
+  setNavigationBarContentStyle,
+  setSystemBarsContentStyle,
+} from 'react-native-android-bar-styler';
+
+// Set light content (white icons) for dark backgrounds
+setStatusBarContentStyle(true);
+
+// Set dark content (black icons) for light backgrounds
+setNavigationBarContentStyle(false);
+
+// Set both bars to light content
+setSystemBarsContentStyle(true);
 ```
 
 ## Contributing

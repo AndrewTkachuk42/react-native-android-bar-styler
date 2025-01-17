@@ -38,4 +38,19 @@ RCT_EXPORT_MODULE()
     // No-op implementation for iOS
 }
 
+- (void)setStatusBarContentStyle:(NSString *)isDark
+{
+    // No-op implementation for iOS
+}
+
+- (void)setNavigationBarContentStyle:(NSString *)isDark
+{
+    // No-op implementation for iOS
+}
+
+- (void)setSystemBarsContentStyle:(NSString *)isDark
+{
+    // No-op implementation for iOS
+}
+
 @end
