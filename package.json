@@ -1,6 +1,6 @@
 {
   "name": "react-native-android-bar-styler",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "This library allows you to style both system bars on android. ",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
