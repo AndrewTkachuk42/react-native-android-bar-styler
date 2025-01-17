@@ -33,3 +33,15 @@ export function setNavigationBarStyle(options: BarStyleOptions): void {
 export function setSystemBarsStyle(options: BarStyleOptions): void {
   AndroidBarStyler.setSystemBarsStyle(options);
 }
+
+export function setStatusBarContentStyle(isLight?: boolean): void {
+  AndroidBarStyler.setStatusBarContentStyle(isLight);
+}
+
+export function setNavigationBarContentStyle(isLight?: boolean): void {
+  AndroidBarStyler.setNavigationBarContentStyle(isLight);
+}
+
+export function setSystemBarsContentStyle(isLight?: boolean): void {
+  AndroidBarStyler.setSystemBarsContentStyle(isLight);
+}

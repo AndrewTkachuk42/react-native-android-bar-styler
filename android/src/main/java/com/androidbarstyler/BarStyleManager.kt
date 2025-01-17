@@ -15,14 +15,14 @@ class BarStyleManager {
     private const val LUMINANCE_THRESHOLD = 0.5
     private var currentAnimation: ValueAnimator? = null
 
-    fun updateBarColor(activity: Activity, barType: BarType, optionsMap: ReadableMap) {
+    fun setBarColor(activity: Activity, barType: BarType, optionsMap: ReadableMap) {
       val options = BarStyleOptionsParser.parse(optionsMap)
       val color = parseColor(options.color) ?: return
       val window = activity.window
       val duration = options.duration
 
       activity.runOnUiThread {
-        updateBarContentColor(window, barType, color)
+        updateBarContentColor(window, barType, color, null)
         val fromColor = getCurrentColor(window, barType)
 
         if (!options.isAnimated) {
@@ -30,14 +30,23 @@ class BarStyleManager {
           return@runOnUiThread
         }
 
-        animateBarColor(BarColorAnimationOptions(
-          window,
-          barType,
-          fromColor,
-          color,
-          duration
-        ))
+        animateBarColor(
+          BarColorAnimationOptions(
+            window,
+            barType,
+            fromColor,
+            color,
+            duration
+          )
+        )
       }
+    }
+
+    fun setBarContentColor(activity: Activity, barType: BarType, isLight: Boolean?) {
+      val window = activity.window
+      val backgroundColor = getCurrentColor(window, barType)
+
+      activity.runOnUiThread { updateBarContentColor(window, barType, backgroundColor, isLight) }
     }
 
     private val barTypeToFlag = mapOf(
@@ -59,8 +68,13 @@ class BarStyleManager {
       }
     }
 
-    private fun updateBarContentColor(window: Window, barType: BarType, backgroundColor: Int) {
-      val isDarkBackground = calculateLuminance(backgroundColor) < LUMINANCE_THRESHOLD
+    private fun updateBarContentColor(
+      window: Window,
+      barType: BarType,
+      backgroundColor: Int,
+      isLight: Boolean?
+    ) {
+      val isDarkBackground = isLight ?: getIsDark(backgroundColor)
       val flag = barTypeToFlag[barType] ?: return
 
       window.decorView.apply {
@@ -83,6 +97,10 @@ class BarStyleManager {
           }
         }
       }
+    }
+
+    private fun getIsDark(backgroundColor: Int): Boolean {
+      return calculateLuminance(backgroundColor) < LUMINANCE_THRESHOLD
     }
 
     private fun getCurrentColor(window: Window, barType: BarType): Int {
